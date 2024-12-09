@@ -50,6 +50,10 @@ def main():
             sprite.update(dt)
         for sprite in drawable:
             sprite.draw(screen)
+        for asteroid in asteroids:
+            if player.is_colliding(asteroid):
+                print("Game over!")
+                running = False    
 
         pygame.display.flip()
         
