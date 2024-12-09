@@ -3,7 +3,7 @@ from constants import SCREEN_HEIGHT, SCREEN_WIDTH
 from player import Player
 from asteroid import Asteroid
 from shot import Shot
-from asteroidfield import AsteroidField 
+from asteroidfield import AsteroidField
 
 def main():
     # Initialize Pygame
@@ -54,6 +54,11 @@ def main():
         for sprite in drawable:
             sprite.draw(screen)
         for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.is_colliding(shot):
+                    shot.kill()
+                    asteroid.kill()
+
             if player.is_colliding(asteroid):
                 print("Game over!")
                 running = False    
