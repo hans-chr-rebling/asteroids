@@ -21,6 +21,10 @@ def main():
     # Initialize the player
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
+    # create groups 
+    updatable = pygame.sprite.Group(player)
+    drawable = pygame.sprite.Group(player)
+
     # Main game loop
     running = True
     while running:
@@ -29,8 +33,12 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
         screen.fill((0, 0, 0))
-        player.update(dt)
-        player.draw(screen)
+
+        for sprite in updatable:
+            sprite.update(dt)
+        for sprite in drawable:
+            sprite.draw(screen)
+
         pygame.display.flip()
         
         
